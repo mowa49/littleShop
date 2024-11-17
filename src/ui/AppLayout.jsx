@@ -8,14 +8,14 @@ const AppLayout = ({ items }) => {
   const location = useLocation();
 
   return (
-    <div className="flex flex-col">
+    <body className="overflow-auto pt-[5rem]">
       <NavBar items={items} />
-      <main className="mt-[4rem] justify-center content-center mx-auto">
+      <main className="mx-auto">
         <AnimatePresence>
           <Outlet key={location.pathname} />
         </AnimatePresence>
       </main>
-    </div>
+    </body>
   );
 };
 

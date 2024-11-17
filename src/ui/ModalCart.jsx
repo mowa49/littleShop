@@ -1,9 +1,10 @@
-import { CloseFullscreen } from "@mui/icons-material";
+import { CloseFullscreen, DeleteForever } from "@mui/icons-material";
 import CloseRounded from "@mui/icons-material/CloseRounded";
 import { useContext } from "react";
 import { AppContext } from "../App";
 function ModalCart({}) {
-  const { items, isModalOpen, closeModal } = useContext(AppContext);
+  const { items, isModalOpen, closeModal, handleRemove } =
+    useContext(AppContext);
 
   if (!isModalOpen || items?.length === 0) return null;
   return (
@@ -21,10 +22,16 @@ function ModalCart({}) {
       {items.map((item) => (
         <div
           key={item.id}
-          className="flex justify-between w-full px-4 border-b-2"
+          className="flex justify-between content-center items-center w-full px-4 border-b-2"
         >
           <p>{item.title.split(" ").slice(0, 3).join(" ")}</p>
           <p> {item.quantity}</p>
+          <button
+            className="border-none m-0 p-0"
+            onClick={() => (handleRemove(item), console.log("click"))}
+          >
+            <DeleteForever />
+          </button>
         </div>
       ))}
     </div>

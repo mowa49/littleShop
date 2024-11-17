@@ -1,6 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingBagOutlined } from "@mui/icons-material";
+import {
+  ShoppingBagOutlined,
+  TripOrigin,
+  Menu,
+  Close,
+} from "@mui/icons-material";
 import { AppContext } from "../App";
 import ModalCart from "./ModalCart";
 
@@ -10,41 +15,77 @@ function NavBar() {
     // Handle the case when the context is undefined
     return <h1>there is no context</h1>; // Or any fallback UI
   }
-  const { items, toggleModal } = context;
-  const num = items?.reduce(
-    (acc, item) => (item.quantity > 1 ? acc + item.quantity : acc + 1),
-    0
-  );
+  const { items, toggleModal, allQuantity } = context;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+  const handleClickOn = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
-    <header className="backg bg-gray-200 text-black p-4 fixed w-full min-h-[4rem] z-10">
+    <header className="backg bg-[#ffffff] text-black fixed top-0 w-full min-h-[7rem] z-10 justify-center items-center content-center px-[8vw]">
       <nav className="mx-auto justify-between flex items-center">
-        <Link to="/" className="text-xl font-bold">
-          Littleshop
+        <Link
+          to="/home"
+          className="text-xl font-bold items-center content-center flex"
+        >
+          <TripOrigin /> <h3>LittleShop</h3>
         </Link>
-        <div className="hidden md:flex items-center gap-5">
-          <button
-            onClick={() => toggleModal()}
-            className="relative bg-transparent hover:bg-slate-300"
+        <div className="flex flex-row">
+          <div className="basket flex items-center gap-5 mr-10">
+            <button
+              onClick={() => toggleModal()}
+              className="relative bg-transparent hover:bg-slate-300"
+            >
+              <div className="bg-[rgb(144,207,231,0.5)] backdrop-blur-sm rounded-full w-[1.5rem] h-[1.5rem] items-center flex justify-center absolute top-[-20px] right-[-25px] ">
+                {allQuantity}
+              </div>
+              <ShoppingBagOutlined />
+            </button>
+            <button onClick={toggleMenu} className="md:hidden transition-all">
+              {isMenuOpen ? <Close /> : <Menu />}
+            </button>
+          </div>
+          <div
+            className={`display transition-all duration-500 ease-in-out${
+              isMenuOpen
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-[100vw]"
+            }  flex-col flex justify-start h-[100vh] p-5 md:h-[5rem] md:flex-row items-center gap-5 transition-all absolute md:static top-[7rem] left-0 w-full md:w-auto bg-[#ffffff] md:bg-transparent md:p-0 md:opacity-100 md:translate-x-0`}
           >
-            <div className="bg-[rgb(144,207,231,0.5)] backdrop-blur-sm rounded-full w-[1.5rem] h-[1.5rem] items-center flex justify-center absolute top-[-15px] right-[-15px]">
-              {num}
-            </div>
-            <ShoppingBagOutlined />
-          </button>
-          <ModalCart />
-          <Link to="/shopping" className="mr-4 flex items-center">
-            Cart
-          </Link>
-          <Link to="/" className="mr-4">
-            Home
-          </Link>
-          <Link to="/store" className="mr-4">
-            Store
-          </Link>
-          <Link to="/about" className="mr-4">
-            About
-          </Link>
+            <ModalCart />
+            <Link
+              to="/shopping"
+              className="mr-4 flex items-center"
+              onClick={() => handleClickOn()}
+            >
+              <a>Cart</a>
+            </Link>
+            <Link
+              to="/"
+              className="mr-4 flex items-center"
+              onClick={() => handleClickOn()}
+            >
+              <a>Home</a>
+            </Link>
+            <Link
+              to="/store"
+              className="mr-4 flex items-center"
+              onClick={() => handleClickOn()}
+            >
+              <a>Store</a>
+            </Link>
+            <Link
+              to="/about"
+              className="mr-4 flex items-center"
+              onClick={() => handleClickOn()}
+            >
+              <a>About</a>
+            </Link>
+          </div>
         </div>
       </nav>
     </header>
@@ -52,51 +93,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
-// import { CancelScheduleSendOutlined } from "@mui/icons-material";
-// import ShoppingBagOutlined from "@mui/icons-material/ShoppingBagOutlined";
-// import { useContext, useState } from "react";
-// import { Link, Route, Routes } from "react-router-dom";
-// import { AppContext } from "../App";
-// import ModalCart from "./ModalCart";
-
-// function NavBar() {
-//   const { items, toggleModal } = useContext(AppContext);
-//   const num = items.length;
-//   return (
-//     <header className="backg bg-gray-200 text-black p-4 fixed w-full min-h-[4rem] z-10">
-//       <nav className=" mx-auto  flex  content-center flex justify-center ">
-//         <Link to="/" className="text-xl font-bold">
-//           Littleshop
-//         </Link>
-//         <div className="hidden md:flex">
-//           <div className="bg-blue-300 rounded-full w-[2rem] h-[2rem] items-center content-center flex justify-center">
-//             {num}
-//           </div>
-//           <button onClick={() => toggleModal()} className="">
-//             <ShoppingBagOutlined />
-//           </button>
-//           <ModalCart />
-//           <Link
-//             to="/shopping"
-//             className="mr-4 align-middle items-center justify-center flex"
-//           >
-//             Cart
-//           </Link>
-//           <Link to="/" className="mr-4">
-//             Home
-//           </Link>
-
-//           <Link to="/store" className="mr-4">
-//             Store
-//           </Link>
-//           <Link to="/about" className="mr-4">
-//             About
-//           </Link>
-//         </div>
-//       </nav>
-//     </header>
-//   );
-// }
-
-// export default NavBar;

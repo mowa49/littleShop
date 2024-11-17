@@ -9,7 +9,6 @@ function StoreSection() {
     return <h1>there is no context</h1>; // Or any fallback UI
   }
   const [store, setStore] = useState([]);
-  const [quantity, setquantity] = useState(0);
   const { items } = context;
 
   useEffect(() => {
@@ -23,7 +22,7 @@ function StoreSection() {
     getData();
   }, [items]);
   return (
-    <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-6 p-[10rem]">
+    <div className="flex mt-20 flex-col m-0 p-0 sm:grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-10 sm:p-[10rem]">
       {store.map((product) => (
         <ProductCards product={product} key={product.id} />
       ))}
