@@ -11,9 +11,10 @@ import PageTransition from "./components/PageTransition";
 
 import ErrorPage from "./page/ErrorPage";
 import StoreSection from "./sections/StoreSection";
-import ShoppingSection from "./sections/shoppingSection";
+
 import AboutSection from "./sections/AboutSection";
 import ItemDetail from "./components/ItemDetail";
+import ShoppingSection from "./sections/ShoppingSection";
 
 const router = createBrowserRouter([
   {
