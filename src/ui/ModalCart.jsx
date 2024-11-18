@@ -8,7 +8,7 @@ function ModalCart({}) {
 
   if (!isModalOpen || items?.length === 0) return null;
   return (
-    <div className=" text-sm z-10 bg-white border-gray-950 shadow-2xl w-[15rem] min-h-[10rem] fixed top-[3.8rem] right-[10vw] backdrop-blur-md rounded-xl p-2 flex flex-col">
+    <div className=" text-sm z-10 bg-white border-gray-950 shadow-2xl min-w-[15rem] min-h-[10rem] fixed top-[3.8rem] right-[10vw] backdrop-blur-md rounded-xl p-2 flex flex-col">
       <button
         className="self-end bg-transparent bg-none p-0 border-none"
         onClick={() => closeModal()}
@@ -27,7 +27,7 @@ function ModalCart({}) {
           <p>{item.title.split(" ").slice(0, 3).join(" ")}</p>
           <p> {item.quantity}</p>
           <button
-            className="border-none m-0 p-0"
+            className="border-none w-2"
             onClick={() => (handleRemove(item), console.log("click"))}
           >
             <DeleteForever />

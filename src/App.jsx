@@ -23,7 +23,7 @@ function App() {
   }
   const toggleModal = () => {
     console.log(isModalOpen);
-    !isModalOpen ? setIsModalOpen(true) : setIsModalOpen(false);
+    !isModalOpen ? setIsModalOpen(!isModalOpen) : setIsModalOpen(false);
   };
   const closeModal = () => setIsModalOpen(false);
 

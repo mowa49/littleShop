@@ -44,6 +44,7 @@ function NavBar() {
                 {allQuantity}
               </div>
               <ShoppingBagOutlined />
+              <ModalCart />
             </button>
             <button onClick={toggleMenu} className="md:hidden transition-all">
               {isMenuOpen ? <Close /> : <Menu />}
@@ -56,7 +57,6 @@ function NavBar() {
                 : "opacity-0 translate-x-[100vw]"
             }  flex-col flex justify-start h-[100vh] p-5 md:h-[5rem] md:flex-row items-center gap-5 transition-all absolute md:static top-[7rem] left-0 w-full md:w-auto bg-[#ffffff] md:bg-transparent md:p-0 md:opacity-100 md:translate-x-0`}
           >
-            <ModalCart />
             <Link
               to="/shopping"
               className="mr-4 flex items-center"
