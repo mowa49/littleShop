@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 function HomeSection() {
   return (
     <div className="relative">
-      <img
-        className="home-image"
-        src="./src/assets/img1.jpeg"
-        alt="backgound"
-      />
+      <img className="home-image" src="./public/img1.jpeg" alt="backgound" />
       <div className="">
         <div className=" md:fixed md:left-0 md:bottom-[2rem] text-center md:text-left justify-center items-center content-center flex flex-col bg-[#0000007c] md:h-[40vh] backdrop-blur-md p-10 gap-4 text-white drop-shadow-lg z-10">
           <h2>Welcome to LittleShop!</h2>
